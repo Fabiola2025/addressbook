@@ -56,14 +56,22 @@ pipeline {
       }
     }
 
-    stage('6. Monitoring Solution Deployment in EKS') {
-      steps {
-        withKubeConfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
-          sh "kubectl apply -k monitoring"
-          sh("""script/install_helm.sh""") 
-          sh("""script/install_prometheus.sh""") 
+
+    stages {
+        stage('6. Monitoring Solution Deployment in EKS') {
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    // Apply Kubernetes manifests for monitoring
+                    sh "kubectl apply -k monitoring"
+                    
+                    // Install Helm
+                    sh "script/install_helm.sh"
+                    
+                    // Install Prometheus
+                    sh "script/install_prometheus.sh"
+                }
+            }
         }
-      }
     }
 
     stage('7. Email Notification') {
