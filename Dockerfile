@@ -21,3 +21,4 @@ CMD "catalina.sh"  "run"
 # EOT
 # docker build -t fusisoft-webapps:1.1.0 .
 # docker run -itd --name=fusisoft-webapps -p 8085:8080 fusisoft-webapps:1.1.0
+#
