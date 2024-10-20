@@ -58,7 +58,7 @@ pipeline {
 
     stage('6. Monitoring Solution Deployment in EKS') {
       steps {
-        kubeconfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
+        withKubeConfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
           sh "kubectl apply -k monitoring"
           sh("""script/install_helm.sh""") 
           sh("""script/install_prometheus.sh""") 
