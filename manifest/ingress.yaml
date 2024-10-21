@@ -5,10 +5,10 @@ metadata:
   namespace: directory
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:637423546337:certificate/e9822346-ba84-4860-b6b0-fdabd5a22827
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:637423546337:certificate/e9822346-ba84-4860-b6b0-fdabd5a22827
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/healthcheck-port: "8080" # Updated to match the service port
+    alb.ingress.kubernetes.io/healthcheck-port: "8080"
     alb.ingress.kubernetes.io/healthcheck-path: /addressbook-1.0
     alb.ingress.kubernetes.io/success-codes: "200,302"
     alb.ingress.kubernetes.io/load-balancer-name: addressbook-server-ip
@@ -16,7 +16,8 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - http:
+  - host:
+    http:
       paths:
       - path: /addressbook-1.0
         pathType: Prefix
@@ -25,4 +26,3 @@ spec:
             name: addressbook-service
             port:
               number: 8080
-
