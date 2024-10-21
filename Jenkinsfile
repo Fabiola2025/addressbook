@@ -69,12 +69,12 @@ pipeline {
     stage('7. Email Notification') {
       steps {
         mail bcc: 'nsuhfabiola@gmail.com', body: '''Build is Over. Check the application using the URL below:
-         https:/http://addressbook-server-ip-1349280821.us-west-2.elb.amazonaws.com/addressbook-1.0/
+         https://addressbook-server-ip-1349280821.us-west-2.elb.amazonaws.com/addressbook-1.0/
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,
          +1 (313) 413-1477''', 
-         subject: 'Application was Successfully Deployed!!', to: 'nsuhfabiola2gmail.com , kelvincaulker508@gmail.com'
+         subject: 'Application was Successfully Deployed!!', to: 'nsuhfabiola@gmail.com , kelvincaulker508@gmail.com'
       }
     }
   }
