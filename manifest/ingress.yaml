@@ -6,19 +6,19 @@ spec:
   rules:
   - host: 
     http:
-      paths: /addressbook-1.0
-      - pathType: Prefix
-        path: 
+      paths:
+      - path: /addressbook-1.0
+        pathType: Prefix
         backend:
           service:
-            name:
+            name: addressbook-service # Add the correct service name here
             port:
               number: 8080
   - host: 
     http:
-      paths:/addressbook-1.0
-      - pathType: Prefix
-        path: 
+      paths:
+      - path: /addressbook-1.0
+        pathType: Prefix
         backend:
           service:
             name: addressbook-service
