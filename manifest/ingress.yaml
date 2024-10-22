@@ -1,20 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-host
+  name: addressbook-ingress
+  namespace: directory
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:999568710647:certificate/e9822346-ba84-4860-b6b0-fdabd5a22827
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-port: "8080"
+    alb.ingress.kubernetes.io/healthcheck-path: /addressbook-1.0
+    alb.ingress.kubernetes.io/success-codes: "200,302"
+    alb.ingress.kubernetes.io/load-balancer-name: addressbook-server-ip
+    alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
 spec:
+  ingressClassName: alb
   rules:
-  - host: 
-    http:
-      paths:
-      - path: /addressbook-1.0
-        pathType: Prefix
-        backend:
-          service:
-            name: addressbook-service # Add the correct service name here
-            port:
-              number: 8080
-  - host: 
+  - host:
     http:
       paths:
       - path: /addressbook-1.0
