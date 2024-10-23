@@ -16,7 +16,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host:
+  - host: addressbook.kelvin-project.com
     http:
       paths:
       - path: /addressbook-1.0
