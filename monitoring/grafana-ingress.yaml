@@ -7,7 +7,7 @@ metadata:
     # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:999568710647:certificate/e9822346-ba84-4860-b6b0-fdabd5a22827
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/healthcheck-port: "80" # Updated to match the service port
+    alb.ingress.kubernetes.io/healthcheck-port: "8080" # Updated to match the service port
     alb.ingress.kubernetes.io/healthcheck-path: /
     alb.ingress.kubernetes.io/success-codes: "200,302"
     alb.ingress.kubernetes.io/load-balancer-name: grafana-alb
@@ -23,4 +23,4 @@ spec:
           service:
             name: kube-prometheus-stack-grafana
             port:
-              number: 80
+              number: 8080
